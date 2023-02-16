@@ -1,5 +1,8 @@
 package com.jhssantiago;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Boleto {
     private int id;
     private String codBanco;

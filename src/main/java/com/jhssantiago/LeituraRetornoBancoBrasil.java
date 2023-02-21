@@ -16,7 +16,16 @@ public class LeituraRetornoBancoBrasil  implements LeituraRetorno {
         System.out.println("lendo arquivo BB: "+ nomeArquivo);
 
         var listaBoletos = new LinkedList<Boleto>();
-
+        /*
+        id do boleto com 10 dígitos
+        código do banco onde o boleto foi pago (3 dígitos)
+        data vencimento (dd/mm/yyyy)
+        data pagamento (dd/mm/yyyy)
+        CPF do cliente (sem . e -)
+        valor do boleto (decimal 10.2)
+        multa por atraso (decimal 10.2)
+        juros no formato (decimal 10.2)
+         */
         try {
             var linhas = Files.readAllLines(Paths.get(nomeArquivo));
             for (var linha : linhas) {

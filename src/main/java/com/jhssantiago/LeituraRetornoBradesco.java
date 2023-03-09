@@ -9,8 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LeituraRetornoBradesco implements LeituraRetorno {
-    private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+public class LeituraRetornoBradesco {
     private static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     @Override
     public List<Boleto> lerArquivo(String nomeArquivo) {

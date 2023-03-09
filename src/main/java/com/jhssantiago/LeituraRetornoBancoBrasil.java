@@ -8,24 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LeituraRetornoBancoBrasil  implements LeituraRetorno {
+public class LeituraRetornoBancoBrasil  {
     private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    @Override
-    public List<Boleto> lerArquivo(String nomeArquivo) {
+    public static List<Boleto> lerArquivo(String nomeArquivo) {
         System.out.println("lendo arquivo BB: "+ nomeArquivo);
-
         var listaBoletos = new LinkedList<Boleto>();
-        /*
-        id do boleto com 10 dígitos
-        código do banco onde o boleto foi pago (3 dígitos)
-        data vencimento (dd/mm/yyyy)
-        data pagamento (dd/mm/yyyy)
-        CPF do cliente (sem . e -)
-        valor do boleto (decimal 10.2)
-        multa por atraso (decimal 10.2)
-        juros no formato (decimal 10.2)
-         */
         try {
             var linhas = Files.readAllLines(Paths.get(nomeArquivo));
             for (var linha : linhas) {
@@ -45,7 +33,6 @@ public class LeituraRetornoBancoBrasil  implements LeituraRetorno {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return listaBoletos;
     }
 }

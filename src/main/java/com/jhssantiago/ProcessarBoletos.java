@@ -1,20 +1,23 @@
 package com.jhssantiago;
 
-public class ProcessarBoletos {
-    private LeituraRetorno leituraRetorno;
+import java.util.List;
+import java.util.function.Function;
 
-    public ProcessarBoletos(LeituraRetorno leituraRetorno) {
+public class ProcessarBoletos {
+    private Function<String, List<Boleto>> leituraRetorno;
+
+    public ProcessarBoletos(Function<String, List<Boleto>> leituraRetorno) {
         this.leituraRetorno = leituraRetorno;
     }
 
     public void processar(String nomeArquivo){
-        var listaBoletos = leituraRetorno.lerArquivo(nomeArquivo);
+        var listaBoletos = leituraRetorno.apply(nomeArquivo);
         for (Boleto boleto : listaBoletos){
             System.out.println(boleto);
         }
     };
 
-    public void setLeituraRetorno(LeituraRetorno leituraRetorno) {
+    public void setLeituraRetorno(Function<String, List<Boleto>> leituraRetorno) {
         this.leituraRetorno = leituraRetorno;
     }
 }

@@ -9,27 +9,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.jhssantiago.ProcessarBoletos.FORMATO_DATA;
+
 public class LeituraRetornoBradesco {
     private static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    @Override
-    public List<Boleto> lerArquivo(String nomeArquivo) {
+
+    public static List<Boleto> lerArquivo(String nomeArquivo) {
         System.out.println("lendo arquivo Bradesco: "+ nomeArquivo);
-
         var listaBoletos = new LinkedList<Boleto>();
-
-        /*
-            id do boleto com 10 dígitos
-            cód banco onde o boleto foi pago (3 dígitos)
-            *agência onde o boleto foi pago (6 dígitos)
-            *conta do cliente para possível estorno de pagamento (9 dígitos)
-            data vencimento (dd/mm/yyyy)
-            *data/hora pagamento (dd/mm/yyyy hh:nn:ss)
-            *CPF do cliente (com . e -)
-            valor do boleto (decimal 10.2)
-            multa por atraso (decimal 10.2)
-            juros no formato (decimal 10.2)
-         */
-
         try {
             var linhas = Files.readAllLines(Paths.get(nomeArquivo));
             for (var linha : linhas) {
